@@ -14,7 +14,7 @@
 	position: relative;
 	width: 960px;
 	height: 50px;
-	background-color: rgb(0,0,0);
+	background-color: rgb(50,132,191);
 }
 
 .titlePanel > h1 {
@@ -39,7 +39,7 @@
 
 #roomsBtn {
 	position: absolute;
-	background-color: rgb(67, 202, 147);
+	background-color: rgb(50, 132, 191);
 	padding: 17px;
 	left: 698px;
 	top:10px;
@@ -52,7 +52,7 @@
 }
 
 #roomsBtn:hover {
-	background-color: rgb(45, 169, 118);
+	background-color: rgb(60, 152, 200);
 }
 
 .chatListDiv {
@@ -236,7 +236,7 @@ input[name='userInput'] {
     height: 21px;
     outline: none;
     color: #FFF;
-    background: rgb(67, 202, 147);
+    background: rgb(50, 132, 191);
     padding: 10px;
     font-family: sans-serif;
     text-decoration: none;
@@ -248,7 +248,7 @@ input[name='userInput'] {
 }
 .fileUploadBtn::before {
 	content: 'Photo';
-	display: inline-block;  
+	display: inline-block;
 	background: rgb(67, 202, 147);
 	border: none;
 	padding: 10px 10px;
@@ -261,7 +261,7 @@ input[name='userInput'] {
 }
 .fileUploadBtn:hover::before {
   	border-color: black;
-  
+
 }
 
 .fileUploadBtn:active::before {
