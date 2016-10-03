@@ -1,3 +1,5 @@
+const crypto = require('crypto')
+
 // Middleware that checks if user is authenticated
 let isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -13,6 +15,8 @@ let findRoomByName = (allrooms, room) => {
   return findRoom > -1
 }
 
+// Generate a unique roomID
+let randomHex = () => crypto.randomBytes(24).toString('hex')
 // Find a chatroom with a given ID
 let findRoomById = (allrooms, roomID) => {
   return allrooms.find((element, index, array) => element.roomID === roomID)
@@ -62,10 +66,12 @@ let removeUserFromRoom = (allrooms, socket) => {
   }
 }
 
+
 module.exports = {
   isAuthenticated,
   findRoomByName,
   findRoomById,
   addUserToRoom,
-  removeUserFromRoom
+  removeUserFromRoom,
+  randomHex
 }

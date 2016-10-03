@@ -15,7 +15,7 @@ module.exports = (io, app) => {
         // Create a new room and broadcast to everyone
         allrooms.push({
           room: newRoomInput,
-          roomID: Math.floor(Math.random() * 10000).toString(),
+          roomID: utils.randomHex(),
           users: []
         })
         // emit an updated list to the creator
