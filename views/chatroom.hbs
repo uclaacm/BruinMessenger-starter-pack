@@ -42,8 +42,8 @@
 			}
 			chatUsers.html('').html(usersListData)
 
-			for (let d of data.history) {
-				updateFeed(d.userPic, d.message)
+			for (let info of data.history) {
+				updateFeed(info.userPic, info.message)
 			}
 		})
 
@@ -88,6 +88,13 @@
 						tmp += `<img src="${img.url}" />`
 					}
 					updateFeed(userPic, tmp)
+
+					socket.emit('newMessage', {
+						roomID,
+						user,
+						userPic,
+						message: tmp
+					})
 				}
 			})
 		})

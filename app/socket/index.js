@@ -47,8 +47,8 @@ module.exports = (io, app) => {
 
     // When a new message arrives
     socket.on('newMessage', data => {
-      let i = utils.findRoomById(data.roomID)
-      allrooms[i].history.push(data)
+      let room = utils.findRoomById(allrooms, data.roomID)
+      room.history.push(data)
       socket.to(data.roomID).emit('inMessage', data)
     })
   })
