@@ -16,7 +16,8 @@ module.exports = (io, app) => {
         allrooms.push({
           room: newRoomInput,
           roomID: utils.randomHex(),
-          users: []
+          users: [],
+          history: []
         })
         // emit an updated list to the creator
         socket.emit('chatRoomsList', allrooms)
@@ -29,13 +30,12 @@ module.exports = (io, app) => {
   io.of('/chatroom').on('connection', socket => {
     // Join a chatroom
     socket.on('join', data => {
-      let usersList = utils.addUserToRoom(allrooms, data, socket)
-      console.log(usersList)
+      let room = utils.addUserToRoom(allrooms, data, socket)
       // Update the list of active users on the chatroom page
       // broadcast change to all users
-      socket.to(data.roomID).emit('updateUsersList', usersList.users)
+      socket.to(data.roomID).emit('updateRoom', room)
       // emit to user who just joined
-      socket.emit('updateUsersList', usersList.users)
+      socket.emit('updateRoom', room)
     })
 
     // When a socket exists
@@ -47,6 +47,8 @@ module.exports = (io, app) => {
 
     // When a new message arrives
     socket.on('newMessage', data => {
+      let i = utils.findRoomById(data.roomID)
+      allrooms[i].history.push(data)
       socket.to(data.roomID).emit('inMessage', data)
     })
   })

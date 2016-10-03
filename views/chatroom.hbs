@@ -35,12 +35,16 @@
 							</div>`
 		}
 
-		socket.on('updateUsersList', data => {
+		socket.on('updateRoom', data => {
 			let usersListData = ''
-			for (let user of data) {
+			for (let user of data.users) {
 				usersListData += userList(user)
 			}
 			chatUsers.html('').html(usersListData)
+
+			for (let d of data.history) {
+				updateFeed(d.userPic, d.message)
+			}
 		})
 
 		let updateFeed = (userPic, message) => {

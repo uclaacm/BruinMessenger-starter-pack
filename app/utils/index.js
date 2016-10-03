@@ -17,6 +17,7 @@ let findRoomByName = (allrooms, room) => {
 
 // Generate a unique roomID
 let randomHex = () => crypto.randomBytes(24).toString('hex')
+
 // Find a chatroom with a given ID
 let findRoomById = (allrooms, roomID) => {
   return allrooms.find((element, index, array) => element.roomID === roomID)
